@@ -18,3 +18,5 @@ connection.query(sql, (err, rows, fields) => {
 });
 
 connection.end();
+
+module.exports = main;
