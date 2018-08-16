@@ -1,7 +1,7 @@
 'use strict'
 
 const mysql      = require('mysql');
-const connection = mysql.createConnection(require('./congig.js'));
+const connection = mysql.createConnection(require('./config.js'));
 
 //ここからMySQLアクセス
 connection.connect();
