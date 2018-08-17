@@ -8,15 +8,19 @@ const connection = mysql.createConnection({
     database : 'ray_db'
 });
 
+function dbinsert(msg){
+  connection.connect();
 
-connection.connect();
+  let sql = `insert into ray_db.comments (comment) values ('${msg}')`;
+  connection.query(sql, (err, rows, fields) => {
+    if (err) throw err; 
+    console.log('users: ', rows);
+  });
+  
+  connection.end();
 
-let sql = `insert into ray_db.comments (comment) values ('${msg}')`;
-connection.query(sql, (err, rows, fields) => {
-  if (err) throw err; 
-  console.log('users: ', rows);
-});
+}
 
-connection.end();
 
-module.exports = main;
+
+module.exports = dbinsert;
