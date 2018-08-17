@@ -29,7 +29,7 @@ function handleEvent(event) {
   let mes = ''
   if(event.message.text === '天気教えて！'){
     mes = 'ちょっとまってね'; //待ってねってメッセージだけ先に処理
-    getNodeVer(`${response.data.forecasts[0].date}${response.data.location.city}の天気は${response.data.forecasts[0].telop}、最高気温は${response.data.forecasts[0].temperature.max.celsius}だよ〜？夏だな？`); //スクレイピング処理が終わったらプッシュメッセージ
+    getNodeVer(event.source.userId); //スクレイピング処理が終わったらプッシュメッセージ
   }else{
     mes = event.message.text;
   }
@@ -46,7 +46,7 @@ const getNodeVer = async (userId) => {
 
     await client.pushMessage(userId, {
         type: 'text',
-        text: item.description.text,
+        text:date.forecasts[0].date + "の" + date.location.city + "は" + date.forecasts[0].telop + "だなー。最高気温は" + date.forecasts[0].temperature.max.celsius + "だな？" 
     });
 }
 
